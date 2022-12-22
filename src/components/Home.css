@@ -1,0 +1,282 @@
+.heroes-multiple {
+    display: flex;
+}
+
+.hero-box-speak {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    overflow: hidden;
+    border-right: 1px solid lightgray;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+}
+
+.speak-background {
+    background-image: url("https://commonvoice.mozilla.org/dist/speak.16315f4e26d3f34f.svg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+}
+
+.hero-box-speak:hover {
+    width: 70%;
+}
+
+.hero-box-speak:hover .speak-info {
+    transform: translateX(-20px);
+}
+
+.hero-box-speak:hover .speak-button-group {
+    transform: translateX(50px);
+}
+
+.hero-box-speak:hover .speak-button {
+    background: #ff4f5e;
+}
+
+
+.mic-icon {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+}
+
+.hero-box-speak:hover .mic-icon {
+    color: white;
+}
+
+.speak-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    column-gap: 80px;
+    left: 300px;
+}
+
+.speak-info {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+}
+
+.speak-desc {
+    visibility: hidden;
+    max-width: 280px;
+    margin-top: 10px;
+    position: absolute;
+    top: 200px;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+    opacity: 0;
+    color: gray;
+}
+
+.hero-box-speak:hover .speak-desc {
+    visibility: visible;
+    top: 100px;
+    opacity: 1;
+}
+
+.hero-box-listen:hover .listen-desc {
+    visibility: visible;
+    top: 100px;
+    opacity: 1;
+}
+
+.below-button-text {
+    visibility: hidden;
+    position: absolute;
+    top: 100px;
+    transition-timing-function: ease-out;
+    transition-duration: 0.5s;
+    opacity: 0;
+    width: 100px;
+    text-align: center;
+}
+
+.hero-box-speak:hover .below-button-text {
+    visibility: visible;
+    top: 70px;
+    opacity: 1;
+}
+
+.hero-box-listen:hover .below-button-text {
+    visibility: visible;
+    top: 70px;
+    opacity: 1;
+}
+
+.progress {
+    visibility: hidden;
+    margin-left: 10px;
+    position: absolute;
+    top: 100px;
+    left: 380px;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+    opacity: 0;
+    width: 200px;
+}
+
+.progress-listen {
+    visibility: hidden;
+    margin-left: 50px;
+    position: absolute;
+    top: 100px;
+    left: 380px;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+    opacity: 0;
+    width: 200px;
+}
+
+.hero-box-speak:hover .progress {
+    visibility: visible;
+    opacity: 1;
+    top: 0;
+}
+
+.hero-box-listen:hover .progress-listen {
+    visibility: visible;
+    opacity: 1;
+    top: 0;
+}
+
+
+.speak-button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+}
+
+.speak-button {
+    background-color: white;
+    border-radius: 50%;
+    width: 88px;
+    height: 88px;
+    border: none;
+}
+
+.speak-button-background {
+    background-image: linear-gradient(to right, var(--gradient-pink), var(--gradient-purple));
+    border-radius: 50%;
+    filter: blur(7.6px);
+    opacity: 0.7;
+    width: 100px;
+    height: 100px;
+}
+
+
+
+.hero-box-listen {
+    display: flex;
+    justify-content: center;
+    min-height: 500px;
+    width: 50%;
+    overflow: hidden;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+}
+
+.listen-background {
+    background-image: url("https://commonvoice.mozilla.org/dist/listen.0ec85689a0d17889.svg");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+}
+
+.listen-button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+}
+
+.listen-button {
+    background-color: white;
+    border-radius: 50%;
+    width: 88px;
+    height: 88px;
+    border: none;
+}
+
+.listen-button-background {
+    background-image: linear-gradient(to right, #88d1f1, #b1b5e5);
+    border-radius: 50%;
+    filter: blur(7.6px);
+    opacity: 0.7;
+    width: 100px;
+    height: 100px;
+}
+
+.hero-box-listen:hover {
+    width: 70%;
+}
+
+.listen-background:hover {
+    opacity: 1;
+}
+
+.hero-box-listen:hover .listen-info {
+    transform: translateX(-30px);
+}
+
+.hero-box-listen:hover .listen-button-group {
+    transform: translateX(50px);
+
+}
+
+.hero-box-listen:hover .listen-button {
+    background-color: var(--valid-green);
+}
+
+.hero-box-listen:hover .play-icon {
+    color: white;
+}
+
+.listen-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    column-gap: 80px;
+}
+
+.listen-info {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+}
+
+.listen-desc {
+    visibility: hidden;
+    max-width: 280px;
+    margin-top: 10px;
+    position: absolute;
+    top: 200px;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+    opacity: 0;
+    color: gray;
+}
+
+.play-icon {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+}
