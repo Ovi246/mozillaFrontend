@@ -9,85 +9,62 @@ import "./Speak.css";
 import useRecorder from "./recorder/useRecorder";
 import { Link } from "react-router-dom";
 import { RecordingContext } from "./contexts/RecordingsProvider";
-import pause from "../images/pause.svg";
-import play from "../images/play.svg";
 
 const Speak = () => {
-  const initialQuotes = [
-    {
-      id: 1,
-      text: "Thrinaxodon has been dated between the Permian-Triassic boundary and the mid-Triassic.",
-    },
-    {
-      id: 2,
-      text: "North Freedom was named from the American ideal of freedom.",
-    },
-    {
-      id: 3,
-      text: "For much of this period he recorded and toured with Eddie Kirkland.",
-    },
-    {
-      id: 4,
-      text: "Blythe was buried at Rose Hill Cemetery in Hope, Hempstead County, Arkansas.",
-    },
-    {
-      id: 5,
-      text: "Further, klezmorim were usually itinerant musicians, who moved from town to town for work.",
-    },
-    {
-      id: 6,
-      text: "Further, klezmorim were usually itinerant musicians, who moved from town to town for work.",
-    },
-    {
-      id: 7,
-      text: "Further, klezmorim were usually itinerant musicians, who moved from town to town for work.",
-    },
-    {
-      id: 8,
-      text: "Further, klezmorim were usually itinerant musicians, who moved from town to town for work.",
-    },
-  ];
-
   const { recorderState, ...handlers } = useRecorder();
   // const { audio } = recorderState;
   const { initRecording } = recorderState;
   const { startRecordingFunc, saveRecordingFunc, cancelRecording } = handlers;
 
-  const [quotes, setQuotes] = useState(initialQuotes);
-  const { recordings, setRecordings, loading, setLoading } =
+  const { quotes, recordings, loading, setLoading, setRecordings } =
     useContext(RecordingContext);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     if (recordings.length > 0) {
       var y = document.getElementsByClassName("pill-content");
-      function togglePlay() {
-        var myAudio = document.getElementsByTagName("audio")[0];
-
-        if (myAudio) {
-          if (myAudio.paused) {
-            myAudio.play();
-            document.getElementById("button-pill").innerText = "Pause";
-          } else {
-            myAudio.pause();
-            document.getElementById("button-pill").innerText = "Play";
-          }
-        }
-      }
       y[recordings.length - 1].innerHTML = `<div id="player">
-        <button id="button-pill">Play</button>
-          <audio>
+        <button class="button-pill"><svg width="24" height="24" viewBox="0 0 24 24"><defs><path id="play-outline-path11" d="M15.5 9.173L1.5.15c-.3-.2-.7-.2-1 0-.3.1-.5.401-.5.802v18.045c0 .401.2.702.5.903.2.1.3.1.5.1s.4-.1.5-.2l14-9.023c.3-.2.5-.501.5-.802 0-.3-.2-.702-.5-.802zM2 17.193V2.757l11.2 7.218L2 17.193z"></path></defs><g fill="none" fill-rule="evenodd" transform="translate(4 2)"><mask id="play-outline-mask11" fill="#fff"><use xlink:href="#play-outline-path11"></use></mask><g fill="#4A4A4A" mask="url(#play-outline-mask11)"><path d="M-4-1h24v24H-4z"></path></g></g></svg></button>
+          <audio preload="auto" id=audio-${recordings.length - 1}}>
               <source src="${recordings[recordings.length - 1].audio}"
               />
           </audio>
         </div>`;
-      document
-        .getElementById("button-pill")
-        .addEventListener("click", togglePlay);
+      var buttons = document.getElementsByClassName("button-pill");
+      buttons[recordings.length - 1].setAttribute(
+        "buttonId",
+        recordings.length - 1
+      );
+      buttons[recordings.length - 1].addEventListener("click", (e) =>
+        togglePlay(e.currentTarget.attributes.buttonId.value)
+      );
+
+      function togglePlay(index) {
+        var myAudio = document.getElementsByTagName("audio")[index];
+
+        console.log(myAudio);
+
+        if (myAudio) {
+          if (myAudio.paused) {
+            myAudio.play();
+            buttons[recordings.length - 1].innerHTML =
+              "<svg fill='#ff4f5e' width='24' height='24' viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg' stroke='#ff4f5e' stroke-width='0'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><path d='M 8.8984 41.9219 C 8.8984 45.1797 10.8672 47.1016 14.1719 47.1016 L 41.8281 47.1016 C 45.1328 47.1016 47.1016 45.1797 47.1016 41.9219 L 47.1016 14.0781 C 47.1016 10.8203 45.1328 8.8984 41.8281 8.8984 L 14.1719 8.8984 C 10.8672 8.8984 8.8984 10.8203 8.8984 14.0781 Z M 12.6719 41.0312 L 12.6719 14.9688 C 12.6719 13.5390 13.5156 12.6719 14.9219 12.6719 L 41.0781 12.6719 C 42.4844 12.6719 43.3281 13.5390 43.3281 14.9688 L 43.3281 41.0312 C 43.3281 42.4609 42.4844 43.3281 41.0781 43.3281 L 14.9219 43.3281 C 13.5156 43.3281 12.6719 42.4609 12.6719 41.0312 Z'></path></svg>";
+          } else {
+            myAudio.pause();
+            buttons[recordings.length - 1].innerHTML =
+              "<svg width='24' height='24' viewBox='0 0 24 24'><defs><path id='play-outline-path11' d='M15.5 9.173L1.5.15c-.3-.2-.7-.2-1 0-.3.1-.5.401-.5.802v18.045c0 .401.2.702.5.903.2.1.3.1.5.1s.4-.1.5-.2l14-9.023c.3-.2.5-.501.5-.802 0-.3-.2-.702-.5-.802zM2 17.193V2.757l11.2 7.218L2 17.193z'></path></defs><g fill='none' fill-rule='evenodd' transform='translate(4 2)'><mask id='play-outline-mask11' fill='#fff'><use xlink:href='#play-outline-path11'></use></mask><g fill='#4A4A4A' mask='url(#play-outline-mask11)'><path d='M-4-1h24v24H-4z'></path></g></g></svg>";
+          }
+          myAudio.addEventListener("ended", function () {
+            buttons[recordings.length - 1].innerHTML =
+              "<svg width='24' height='24' viewBox='0 0 24 24'><defs><path id='play-outline-path11' d='M15.5 9.173L1.5.15c-.3-.2-.7-.2-1 0-.3.1-.5.401-.5.802v18.045c0 .401.2.702.5.903.2.1.3.1.5.1s.4-.1.5-.2l14-9.023c.3-.2.5-.501.5-.802 0-.3-.2-.702-.5-.802zM2 17.193V2.757l11.2 7.218L2 17.193z'></path></defs><g fill='none' fill-rule='evenodd' transform='translate(4 2)'><mask id='play-outline-mask11' fill='#fff'><use xlink:href='#play-outline-path11'></use></mask><g fill='#4A4A4A' mask='url(#play-outline-mask11)'><path d='M-4-1h24v24H-4z'></path></g></g></svg>";
+          });
+        }
+      }
     }
-  }, [recordings]);
+  }, [recordings, index]);
 
   useEffect(() => {
+    setRecordings([]);
     const fetchElements = async () => {
       const elements = document.getElementById("cards");
       const cards = elements.getElementsByClassName("card");
@@ -197,10 +174,17 @@ const Speak = () => {
               </Link>
             </div>
             <div>
-              <span className="mx-10 text-xl pb-3 border-b-2 border-black font-serif">
+              <span
+                className={`mx-10 text-xl pb-3 ${
+                  window.location.pathname === "/speak" &&
+                  "border-b-2 border-[var(--blue)]"
+                } font-serif`}
+              >
                 Speak
               </span>
-              <span className="text-xl pb-3 font-serif">Listen</span>
+              <Link to="/listen">
+                <span className="text-xl pb-3 font-serif">Listen</span>
+              </Link>
             </div>
           </div>
           <div className="uppercase font-semibold flex justify-center items-center text-sm hover:underline cursor-pointer">
@@ -299,7 +283,18 @@ const Speak = () => {
                   setIndex(index + 1);
                 }}
               >
-                <CgPlayStopR className="text-red-500 z-40 text-3xl" />
+                <svg
+                  fill="#ff4f5e"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 56 56"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="#ff4f5e"
+                  strokeWidth="0"
+                >
+                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                  <path d="M 8.8984 41.9219 C 8.8984 45.1797 10.8672 47.1016 14.1719 47.1016 L 41.8281 47.1016 C 45.1328 47.1016 47.1016 45.1797 47.1016 41.9219 L 47.1016 14.0781 C 47.1016 10.8203 45.1328 8.8984 41.8281 8.8984 L 14.1719 8.8984 C 10.8672 8.8984 8.8984 10.8203 8.8984 14.0781 Z M 12.6719 41.0312 L 12.6719 14.9688 C 12.6719 13.5390 13.5156 12.6719 14.9219 12.6719 L 41.0781 12.6719 C 42.4844 12.6719 43.3281 13.5390 43.3281 14.9688 L 43.3281 41.0312 C 43.3281 42.4609 42.4844 43.3281 41.0781 43.3281 L 14.9219 43.3281 C 13.5156 43.3281 12.6719 42.4609 12.6719 41.0312 Z"></path>
+                </svg>
               </button>
             </div>
           ) : (

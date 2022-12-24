@@ -7,11 +7,9 @@ import RecordingsProvider from "./components/contexts/RecordingsProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <RecordingsProvider>
-        <App />
-      </RecordingsProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <RecordingsProvider>
+      <App />
+    </RecordingsProvider>
+  </BrowserRouter>
 );

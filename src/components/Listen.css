@@ -1,0 +1,75 @@
+.inactive {
+    filter: blur(6px);
+}
+
+.record-active {
+    background: white;
+    border: 2px solid;
+    border-color: var(--grey);
+    border-radius: 29px;
+}
+
+.pill-content {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--warm-grey);
+}
+
+.record-done .pill-num {
+    background: var(--desert-storm);
+}
+
+.record-done {
+    background: white;
+    border-radius: 29px;
+}
+
+.listen-button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.5s;
+}
+
+.listen-button {
+    background-color: white;
+    border-radius: 50%;
+    width: 88px;
+    height: 88px;
+    border: none;
+}
+
+.listen-button-background {
+    background-image: linear-gradient(to right, pink, purple);
+    border-radius: 50%;
+    filter: blur(7.6px);
+    opacity: 0.7;
+    width: 100px;
+    height: 100px;
+}
+
+
+/* .card {
+    transition: transform 400ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
+} */
+
+.disable {
+    background: var(--desert-storm);
+    color: var(--warm-grey);
+    cursor: default;
+}
+
+.playbg {
+    background-image: url(https://undefined.herokuapp.com/s/AFucluCA);
+    width: 30px;
+    height: 30px;
+}
+
+.pausebg {
+    background-image: url(https://undefined.herokuapp.com/s/kVbNc8IX);
+    width: 30px;
+    height: 30px;
+}
